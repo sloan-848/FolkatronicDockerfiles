@@ -1,0 +1,31 @@
+version: '2'
+services:
+  ftp:
+    build: ./ftpd
+    ports: 
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - /data/www:/home/folkatronic
+      - /data/logs:/home/folkatronic/logs
+      - /etc/letsencrypt/live/folkatronic.com/cert.pem:/etc/ssl/private/pure-ftpd.pem
+    environment:
+      - PUBLICHOST=folkatronic.com
+  webserver:
+    build: ./apachephp
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /data/logs/apache2:/var/log/apache2
+      - /data/www:/var/www/html
+    links:
+      - database
+  database:
+    image: mysql/mysql-server:5.7
+    volumes:
+      - /home/will/.keys/sql.txt:/tmp/password.txt
+      - /data/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=/tmp/password.txt
+      - MYSQL_ONETIME_PASSWORD=yes

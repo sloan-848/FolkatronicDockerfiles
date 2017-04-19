@@ -9,7 +9,7 @@ services:
     volumes:
       - /data/www:/home/folkatronic
       - /data/logs:/home/folkatronic/logs:ro
-      - /etc/pure-pw:/etc/pure-ftpd/passwd:ro
+      - /etc/pure-ftpd/pure-pw:/etc/pure-ftpd/passwd:ro
     environment:
       - PUBLICHOST=folkatronic.com
   webserver:

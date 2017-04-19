@@ -13,16 +13,15 @@ services:
     environment:
       - PUBLICHOST=folkatronic.com
   webserver:
-    build: ./apachephp
-    image: will/apachephp
+    build: ./apache-php
+    image: will/apache-php
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /data/logs/apache2:/var/log/apache2 # Logs
       - /data/www:/var/www/html # Webserve root
-      - /etc/letsencrypt/live/folkatronic.com/fullchain.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem # Fullchain SSL Key (for default config)
-      - /etc/letsencrypt/live/folkatronic.com/privkey.pem:/etc/ssl/private/ssl-cert-snakeoil.key # Private SSL Key
+      - /etc/letsencrypt/:/etc/ssl/ # SSL Certs and Keys
     links:
       - database
   database:

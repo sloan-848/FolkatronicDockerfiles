@@ -9,6 +9,7 @@ services:
       - /data/www:/home/folkatronic
       - /data/logs:/home/folkatronic/logs
       - /etc/letsencrypt/live/folkatronic.com/cert.pem:/etc/ssl/private/pure-ftpd.pem
+      - /etc/passwd:/etc/pure-ftpd/passwd
     environment:
       - PUBLICHOST=folkatronic.com
   webserver:

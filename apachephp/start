@@ -1,2 +1,0 @@
-#!/bin/bash
-docker run -p 80:80 -p 443:443 -v /home/folkatronic/www:/var/www/html/ -d eboraas/apache-php

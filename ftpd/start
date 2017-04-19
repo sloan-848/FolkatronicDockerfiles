@@ -1,2 +1,0 @@
-#!/bin/bash
-docker run -p 21:21 -p 30000-30009:30000-30009 -e "PUBLICHOST=folkatronic.com" -v "/home/folkatronic/:/home/folkatronic" "/etc/letsencrypt/live/folkatronic.com:/keys" --name "ftp" -d folkatronic/ftp

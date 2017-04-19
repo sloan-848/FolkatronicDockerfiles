@@ -2,14 +2,14 @@ version: '2'
 services:
   ftp:
     build: ./ftpd
+    image: will/ftp
     ports: 
       - "21:21"
       - "30000-30009:30000-30009"
     volumes:
       - /data/www:/home/folkatronic
       - /data/logs:/home/folkatronic/logs
-      - /etc/letsencrypt/live/folkatronic.com/cert.pem:/etc/ssl/private/pure-ftpd.pem
-      - /etc/passwd:/etc/pure-ftpd/passwd
+      - /etc/pure-pw:/etc/pure-ftpd/passwd
     environment:
       - PUBLICHOST=folkatronic.com
   webserver:
